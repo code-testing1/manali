@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MANALI // 29.10.26</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&family=Permanent+Marker&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;overflow:hidden;color:#fff;font-family:Inter,sans-serif;
+  background:#08070c;
+}
+body:before{
+ content:"";position:fixed;inset:0;pointer-events:none;opacity:.07;z-index:10;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.bg{
+ position:fixed;inset:0;
+ background:
+ radial-gradient(ellipse at 50% 65%,#263f62 0,#111525 30%,transparent 65%),
+ linear-gradient(180deg,#07050c 0%,#100b1d 65%,#07080d);
+}
+.mountain{
+ position:fixed;bottom:-4vh;left:50%;transform:translateX(-50%);
+ width:110vw;height:42vh;opacity:.22;
+ background:#17263a;
+ clip-path:polygon(0 100%,0 72%,13% 54%,22% 69%,36% 30%,48% 67%,62% 42%,76% 70%,88% 48%,100% 72%,100% 100%);
+ filter:blur(1px);
+}
+.snow{position:fixed;inset:0;pointer-events:none}
+.snow i{
+ position:absolute;top:-20px;color:#fff;font-style:normal;opacity:.5;
+ animation:fall linear infinite;
+}
+@keyframes fall{to{transform:translateY(110vh) rotate(180deg)}}
+
+.wrap{
+ position:relative;z-index:2;min-height:100vh;display:flex;
+ flex-direction:column;align-items:center;padding:34px 18px 24px;
+}
+.top{
+ width:min(850px,100%);display:flex;justify-content:space-between;
+ align-items:center;font-size:10px;letter-spacing:3px;color:#777;
+}
+.live{color:#58ff9a}.live:before{content:"●";margin-right:7px;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{opacity:.2}}
+
+.hero{text-align:center;margin-top:clamp(7vh,11vh,12vh)}
+.mini{font-size:11px;letter-spacing:7px;color:#00eaff;font-weight:800}
+h1{
+ font-family:'Bebas Neue';font-size:clamp(90px,20vw,190px);line-height:.76;
+ letter-spacing:4px;margin-top:13px;
+ background:linear-gradient(110deg,#fff,#00eaff,#ff3cac,#fff);
+ background-size:300%;-webkit-background-clip:text;color:transparent;
+ animation:grad 5s linear infinite;
+}
+@keyframes grad{to{background-position:300%}}
+.sub{
+ margin-top:24px;font-family:'Permanent Marker';font-size:clamp(18px,3vw,26px);
+ transform:rotate(-2deg);color:#f5f5f5;
+}
+.sub span{color:#ff3cac}
+
+.count-label{margin-top:clamp(55px,8vh,80px);font-size:10px;letter-spacing:5px;color:#777}
+.timer{
+ display:grid;grid-template-columns:repeat(4,1fr);
+ gap:clamp(8px,2vw,18px);width:min(760px,100%);margin-top:18px;
+}
+.box{
+ padding:18px 8px 15px;border:1px solid #ffffff18;border-radius:16px;
+ background:#ffffff06;backdrop-filter:blur(8px);
+ box-shadow:0 15px 40px #0004;
+}
+.num{font-family:'Bebas Neue';font-size:clamp(48px,8vw,78px);line-height:.8}
+.unit{font-size:8px;letter-spacing:3px;color:#00eaff;margin-top:9px}
+.progress{
+ width:min(760px,100%);height:3px;margin-top:22px;background:#ffffff10;
+ border-radius:10px;overflow:hidden
+}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#00eaff,#ff3cac);box-shadow:0 0 15px #ff3cac}
+
+.chat{
+ width:min(520px,100%);margin-top:28px;border:1px solid #ffffff12;
+ border-radius:20px;background:#0b0b0ddd;overflow:hidden;
+ box-shadow:0 25px 70px #0009;
+}
+.chat-head{
+ padding:13px 15px;border-bottom:1px solid #ffffff0d;text-align:left;
+ background:#111016;font-size:10px;letter-spacing:2px;color:#999;
+ display:flex;justify-content:space-between;align-items:center
+}
+.chat-head .online{color:#55d88a;font-size:8px;letter-spacing:1px}
+.messages{
+ height:245px;padding:13px 12px;display:flex;flex-direction:column;
+ justify-content:flex-end;gap:7px;overflow:hidden;
+ background:
+ linear-gradient(#111111cc,#111111cc),
+ radial-gradient(circle at 20% 30%,#38203b33,transparent 45%);
+}
+.msg{
+ width:max-content;max-width:82%;padding:7px 10px 5px;border-radius:9px;
+ font-size:11px;line-height:1.35;color:#eee;position:relative;
+ animation:in .25s ease-out;box-shadow:0 1px 2px #0006;
+}
+.msg.other{align-self:flex-start;background:#202126;border-top-left-radius:3px}
+.msg.me{align-self:flex-end;background:#174d3a;border-top-right-radius:3px}
+.msg .sender{font-size:9px;font-weight:800;margin-bottom:3px;color:#ff6fbd}
+.msg.me .sender{color:#70e7a5}
+.msg .time{font-size:7px;color:#aaa;float:right;margin:5px 0 0 9px}
+.msg.me .time{color:#9ac8b5}
+@keyframes in{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}
+
+
+.footer{
+ margin-top:auto;padding-top:20px;font-size:9px;letter-spacing:3px;color:#555
+}
+
+.party{
+ position:fixed;inset:0;pointer-events:none;z-index:5;opacity:0;
+ background:radial-gradient(circle at 50% 50%,#ff3cac15,transparent 45%);
+ transition:.5s;
+}
+body.party .party{opacity:1}
+body.party h1{animation:grad 1s linear infinite}
+body.party .box{border-color:#ff3cac55;box-shadow:0 0 35px #ff3cac18}
+
+@media(max-width:500px){
+ .top{font-size:8px}.timer{gap:5px}.box{padding:16px 3px}
+ .num{font-size:48px}.unit{font-size:7px;letter-spacing:2px}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="mountain"></div><div class="snow" id="snow"></div>
+<div class="party"></div>
+
+<main class="wrap">
+ <div class="top">
+  <span class="live">TRIP HQ ONLINE</span>
+  <span>29 • 10 • 26</span>
+ </div>
+
+ <div class="hero">
+  <div class="mini">GAAND FAAD TRIP INCOMING</div>
+  <h1>MANALI</h1>
+  <div class="sub">bas <span>29th</span> jaldi aa ja bhai 😭</div>
+ </div>
+
+ <div class="count-label">TIME LEFT UNTIL WE FUCKING LEAVE</div>
+ <div class="timer">
+  <div class="box"><div class="num" id="days">00</div><div class="unit">DAYS</div></div>
+  <div class="box"><div class="num" id="hours">00</div><div class="unit">HOURS</div></div>
+  <div class="box"><div class="num" id="mins">00</div><div class="unit">MIN</div></div>
+  <div class="box"><div class="num" id="secs">00</div><div class="unit">SEC</div></div>
+ </div>
+ <div class="progress"><i id="progress"></i></div>
+
+ <div class="chat">
+  <div class="chat-head">
+   <span>GAAND FAAD MANALI TRIP 💀🏔️</span><span class="online">● 3 online</span>
+  </div>
+  <div class="messages" id="messages">
+   <div class="msg other"><div class="sender">Rishu</div>bhai kitne din aur bache hain? 😭<span class="time">11:42</span></div>
+   <div class="msg other"><div class="sender">Smoki</div>saale calendar dekh le 💀<span class="time">11:43</span></div>
+   <div class="msg me"><div class="sender">Manan</div>bc calendar nahi, main toh roz countdown dekh raha hu 😭<span class="time">11:43</span></div>
+   <div class="msg other"><div class="sender">Rishu</div>29 ko koi cancel hua na toh maa ch*d dunga sabki<span class="time">11:44</span></div>
+   <div class="msg other"><div class="sender">Smoki</div>daru ka scene kaun dekh raha hai? 🍾<span class="time">11:45</span></div>
+   <div class="msg me"><div class="sender">Manan</div>pehle manali pahuch bc, fir daru ka theka bhi mil jayega 💀<span class="time">11:45</span></div>
+   <div class="msg other"><div class="sender">Rishu</div>haan bhai bas koi gaadi chalaate time hero mat banna 😂<span class="time">11:46</span></div>
+  </div>
+ </div>
+
+ <div class="footer">NO PLAN • NO SLEEP • GAAND FAAD MANALI</div>
+</main>
+
+<script>
+// CHANGE ONLY THIS TIME IF YOU KNOW THE EXACT DEPARTURE TIME.
+const departure=new Date("2026-10-29T00:00:00+05:30").getTime();
+const start=new Date("2026-10-06T00:00:00+05:30").getTime();
+
+function tick(){
+ const diff=departure-Date.now();
+ if(diff<=0){
+  ["days","hours","mins","secs"].forEach(x=>document.getElementById(x).textContent="00");
+  document.querySelector(".count-label").textContent="BHAI NIKAL PADHE 💀";
+  document.querySelector(".sub").innerHTML="MANALI <span>OR WE DIE TRYING</span>";
+  document.getElementById("progress").style.width="100%";
+  return;
+ }
+ const d=Math.floor(diff/86400000);
+ const h=Math.floor(diff%86400000/3600000);
+ const m=Math.floor(diff%3600000/60000);
+ const s=Math.floor(diff%60000/1000);
+ document.getElementById("days").textContent=String(d).padStart(2,"0");
+ document.getElementById("hours").textContent=String(h).padStart(2,"0");
+ document.getElementById("mins").textContent=String(m).padStart(2,"0");
+ document.getElementById("secs").textContent=String(s).padStart(2,"0");
+ document.getElementById("progress").style.width=
+  Math.min(100,Math.max(0,(Date.now()-start)/(departure-start)*100))+"%";
+}
+tick();setInterval(tick,1000);
+
+for(let i=0;i<35;i++){
+ const x=document.createElement("i");x.textContent="❄";
+ x.style.left=Math.random()*100+"%";
+ x.style.fontSize=(7+Math.random()*12)+"px";
+ x.style.animationDuration=(6+Math.random()*8)+"s";
+ x.style.animationDelay=(-Math.random()*10)+"s";
+ document.getElementById("snow").appendChild(x);
+}
+
+// Chaotic WhatsApp-style group chat.
+// Manan = viewer, therefore ALWAYS right.
+// Rishu + Smoki = ALWAYS left.
+const lines=[
+ ["Rishu","bhai maa kasam 23 din nahi kat rahe 😭","other"],
+ ["Smoki","gaand faad manali trip loading bc 💀","other"],
+ ["Manan","naam dekh ke hi lag raha hai trip successful hoga","me"],
+ ["Rishu","successful? bhai hum bas zinda wapas aa jayein 😂","other"],
+ ["Smoki","saale abhi se countdown dekh raha hai? 💀","other"],
+ ["Manan","haan bc kaam kya hai aur 😂","me"],
+ ["Rishu","ticket dekh li ya phir last moment pe royega?","other"],
+ ["Manan","ticket sorted hai chomu.","me"],
+ ["Smoki","29 ko koi cancel-vancel hua na toh gaand tod dunga","other"],
+ ["Rishu","daru ka budget alag rakhna bc 🍾","other"],
+ ["Manan","pehle room pahuchne de bhadwo 😭","me"],
+ ["Smoki","room? bhai hum seedha pahad jayenge","other"],
+ ["Rishu","haan aur raat ko bolna 'bhai thand lag rahi hai' 😂","other"],
+ ["Manan","playlist mein apne sad songs mat daalna saale","me"],
+ ["Smoki","main DJ hu. meri marzi chalegi.","other"],
+ ["Rishu","teri playlist mein 14 Arijit songs hain chutiye","other"],
+ ["Manan","💀💀💀","me"],
+ ["Smoki","ek kaam karo sab chup raho aur 29 jaldi lao","other"],
+ ["Rishu","bc mujhe bas pahad + daru + bakchodi chahiye","other"],
+ ["Manan","order galat hai. pehle pahad 😂","me"],
+ ["Smoki","bhai 3 din mein humari aukaat pata chal jayegi","other"],
+ ["Rishu","kisi ko yaad hai hotel kitne baje check-in hai?","other"],
+ ["Manan","nahi. aur honestly mujhe jaana bhi nahi hai 😭","me"],
+ ["Smoki","wah saale planning dekh rahe ho?","other"],
+ ["Rishu","planning maa chudaye. MANALI BC 🏔️","other"],
+ ["Manan","29th kab aayegi bc 😭","me"],
+ ["Smoki","bas ab 29 ko seedha nikal. bakchodi baad mein.","other"],
+];
+let n=0;
+
+function nowTime(){
+ const d=new Date();
+ return d.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit",hour12:false});
+}
+function addMessage(){
+ const box=document.getElementById("messages");
+ const [name,text,type]=lines[n++%lines.length];
+ const el=document.createElement("div");
+ el.className="msg "+type;
+ el.innerHTML='<div class="sender">'+name+'</div>'+
+   text+'<span class="time">'+nowTime()+'</span>';
+ box.appendChild(el);
+ while(box.children.length>7) box.removeChild(box.firstChild);
+}
+setInterval(addMessage,2800);
+
+// Press P for subtle party mode
+document.addEventListener("keydown",e=>{
+ if(e.key.toLowerCase()==="p")document.body.classList.toggle("party");
+});
+</script>
+</body>
+</html>
